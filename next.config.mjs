@@ -1,6 +1,12 @@
+const isGitHubPages = process.env.GITHUB_PAGES === "true"
+const repoName = "AIWebsite"
+const basePath = isGitHubPages ? `/${repoName}` : ""
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  basePath,
+  assetPrefix: basePath || undefined,
   typescript: {
     ignoreBuildErrors: true,
   },
