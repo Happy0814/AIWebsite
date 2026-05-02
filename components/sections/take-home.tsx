@@ -26,7 +26,7 @@ export function TakeHomeSection() {
           className="mb-8"
         >
           <p className="text-primary text-sm tracking-[0.3em] uppercase mb-6">The Core Lesson</p>
-          <h2 className="text-4xl md:text-5xl font-serif mb-2">Take-Home Lesson</h2>
+          <h2 className="text-4xl md:text-5xl font-serif mb-2">Take Home Lesson</h2>
         </motion.div>
 
         <motion.div
@@ -50,8 +50,9 @@ export function TakeHomeSection() {
           className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
         >
           This is what makes AI accountability <span className="text-accent">wicked</span>. 
-          It is not just a flaw in the technology. It is a problem of systems, incentives, 
-          values, and power.
+          The deepest problem is not simply that AI can fail. It is that the tools for controlling
+          AI are built inside the same systems of incentives, values, and power that make failure
+          hard to govern.
         </motion.p>
       </div>
     </section>

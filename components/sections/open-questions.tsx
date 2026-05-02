@@ -5,8 +5,8 @@ import { useRef } from "react"
 
 const questions = [
   "How should liability be divided across developers, companies, deployers, regulators, and users?",
-  "What forms of post-deployment monitoring actually work?",
-  "Can independent audits remain meaningful in a system that rewards speed?",
+  "What forms of post-deployment monitoring actually catch drift before people are harmed?",
+  "Can independent audits remain meaningful when companies control access to data and systems?",
   "How should different countries balance innovation and restraint?",
   "How do military and state uses of AI complicate accountability?",
   "What structures could force continuous proof of safety instead of one-time approval?",

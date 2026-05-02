@@ -9,7 +9,9 @@ import { ConflictsSection } from "@/components/sections/conflicts"
 import { WickedProblemSection } from "@/components/sections/wicked-problem"
 import { EthicsSection } from "@/components/sections/ethics"
 import { OpenQuestionsSection } from "@/components/sections/open-questions"
+import { VisualEvidenceSection } from "@/components/sections/visual-evidence"
 import { TakeHomeSection } from "@/components/sections/take-home"
+import { RevisionStatementSection } from "@/components/sections/revision-statement"
 import { BibliographySection } from "@/components/sections/bibliography"
 import { Footer } from "@/components/sections/footer"
 
@@ -41,9 +43,15 @@ export default function AIAccountabilityExhibition() {
       
       {/* Open Questions */}
       <OpenQuestionsSection />
+
+      {/* Visual Evidence */}
+      <VisualEvidenceSection />
       
       {/* Take-Home Lesson */}
       <TakeHomeSection />
+
+      {/* Revision Statement */}
+      <RevisionStatementSection />
       
       {/* Bibliography */}
       <BibliographySection />

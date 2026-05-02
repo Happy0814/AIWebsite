@@ -13,7 +13,9 @@ const navItems = [
   { id: "wicked", label: "Wicked Problem" },
   { id: "ethics", label: "Ethics" },
   { id: "questions", label: "Questions" },
+  { id: "evidence", label: "Evidence" },
   { id: "lesson", label: "Lesson" },
+  { id: "revision", label: "Revision" },
   { id: "bibliography", label: "Sources" },
 ]
 

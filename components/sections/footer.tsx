@@ -36,7 +36,7 @@ export function Footer() {
           className="mt-12 pt-8 border-t border-border/20"
         >
           <p className="text-sm text-muted-foreground/60">
-            An interactive exhibition exploring AI accountability as a wicked problem
+            wow!!! you scrolled all the way down here, thank for reading and please give me a 100 p.s. please grade the two late weekly reflections. Or don't uhhh I can't really ask for much since they were late as hell but I would like an A in this class to save my gpa :D
           </p>
         </motion.div>
       </div>

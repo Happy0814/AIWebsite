@@ -7,37 +7,52 @@ const nodes = [
   {
     id: "technical",
     label: "Technical Systems",
-    sublabels: ["model drift", "probabilistic behavior", "testing", "audits", "monitoring"],
+    sublabels: ["model drift", "testing", "monitoring"],
     angle: -90,
     color: "oklch(0.55 0.22 250)",
   },
   {
     id: "makers",
     label: "The Makers",
-    sublabels: ["developers", "engineers", "cloud providers", "product managers", "vendors", "compliance teams"],
+    sublabels: ["developers", "vendors", "cloud"],
     angle: -18,
     color: "oklch(0.6 0.18 280)",
   },
   {
     id: "government",
     label: "Government & Legal",
-    sublabels: ["legislators", "regulators", "courts", "standards", "agencies"],
+    sublabels: ["law", "courts", "standards"],
     angle: 54,
     color: "oklch(0.5 0.18 220)",
   },
   {
     id: "people",
     label: "The People",
-    sublabels: ["users", "workers", "patients", "students", "job applicants", "journalists"],
+    sublabels: ["users", "workers", "patients"],
     angle: 126,
     color: "oklch(0.55 0.15 180)",
   },
   {
     id: "market",
     label: "Market Drivers",
-    sublabels: ["profit", "competition", "public trust", "compliance costs", "geopolitics", "early-adopter pressure"],
+    sublabels: ["profit", "trust", "competition"],
     angle: 198,
     color: "oklch(0.6 0.2 300)",
+  },
+]
+
+const relationships = [
+  {
+    label: "Speed pressure",
+    type: "conflict",
+  },
+  {
+    label: "Legal and audit pressure",
+    type: "conflict",
+  },
+  {
+    label: "Shared need for trust",
+    type: "convergence",
   },
 ]
 
@@ -102,8 +117,8 @@ function SystemNode({
             className="absolute inset-0 rounded-xl blur-lg opacity-30"
             style={{ backgroundColor: node.color }}
           />
-          <div 
-            className="relative w-32 md:w-40 glass rounded-xl p-4 border transition-all duration-300 hover:scale-105"
+          <div
+            className="relative w-36 md:w-40 glass rounded-xl p-4 border transition-all duration-300 hover:scale-105"
             style={{ borderColor: `${node.color}40` }}
           >
             <h3 className="text-sm md:text-base font-semibold text-foreground text-center mb-2">
@@ -115,7 +130,7 @@ function SystemNode({
               style={{ opacity: sublabelsProgress }}
               className="flex flex-wrap gap-1 justify-center"
             >
-              {node.sublabels.slice(0, 4).map((sublabel) => (
+              {node.sublabels.map((sublabel) => (
                 <span
                   key={sublabel}
                   className="text-[10px] px-1.5 py-0.5 rounded-full bg-secondary/50 text-muted-foreground"
@@ -123,11 +138,6 @@ function SystemNode({
                   {sublabel}
                 </span>
               ))}
-              {node.sublabels.length > 4 && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-secondary/50 text-muted-foreground">
-                  +{node.sublabels.length - 4}
-                </span>
-              )}
             </motion.div>
           </div>
         </div>
@@ -154,9 +164,63 @@ export function SystemMapSection() {
     <section
       id="system-map"
       ref={containerRef}
-      className="relative min-h-[300vh]"
+      className="relative py-28 md:py-0 md:min-h-[300vh]"
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+      <div className="md:hidden max-w-2xl mx-auto px-6">
+        <div className="text-center mb-10">
+          <p className="text-primary/80 text-sm tracking-[0.2em] uppercase mb-2">The Centerpiece</p>
+          <h2 className="text-4xl font-serif mb-4">The AI Accountability System</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            I selected these stakeholder groups because each one controls or experiences a
+            different part of the accountability cycle.
+          </p>
+        </div>
+
+        <div className="grid gap-4">
+          {nodes.map((node) => (
+            <div
+              key={node.id}
+              className="glass rounded-xl border p-5"
+              style={{ borderColor: `${node.color}40` }}
+            >
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-lg font-semibold text-foreground">{node.label}</h3>
+                <div
+                  className="h-2 w-10 rounded-full"
+                  style={{ backgroundColor: node.color }}
+                />
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {node.sublabels.map((sublabel) => (
+                  <span
+                    key={sublabel}
+                    className="text-xs px-2 py-1 rounded-full bg-secondary/60 text-muted-foreground"
+                  >
+                    {sublabel}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-3">
+          {relationships.map((relationship) => (
+            <div
+              key={relationship.label}
+              className={`rounded-xl border px-4 py-3 text-sm font-medium ${
+                relationship.type === "conflict"
+                  ? "border-destructive/30 bg-destructive/10 text-destructive/90"
+                  : "border-primary/30 bg-primary/10 text-primary"
+              }`}
+            >
+              {relationship.label}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="sticky top-0 hidden h-screen items-center justify-center overflow-hidden md:flex">
         {/* Background glow */}
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-10 bg-primary" />
@@ -166,7 +230,7 @@ export function SystemMapSection() {
           {/* Section Header */}
           <motion.div
             style={{ opacity: centerOpacity }}
-            className="absolute top-8 left-6 right-6 text-center"
+            className="absolute top-20 left-6 right-6 text-center"
           >
             <p className="text-primary/80 text-sm tracking-[0.2em] uppercase mb-2">The Centerpiece</p>
             <h2 className="text-3xl md:text-4xl font-serif">The AI Accountability System</h2>
@@ -202,6 +266,7 @@ export function SystemMapSection() {
                 sublabelsProgress={sublabelsProgress}
               />
             ))}
+
           </div>
 
           {/* Caption */}
@@ -209,11 +274,25 @@ export function SystemMapSection() {
             style={{ opacity: captionProgress }}
             className="absolute bottom-8 left-6 right-6 max-w-2xl mx-auto"
           >
-            <div className="glass rounded-xl p-6 text-center">
-              <p className="text-muted-foreground leading-relaxed">
-                When mapped as a system, AI accountability becomes visibly tangled. 
-                That messiness is part of the lesson: the problem is produced by relationships 
-                and incentives across the whole system, not by one isolated failure.
+            <div className="glass rounded-xl p-5 text-center">
+              <div className="mb-4 flex flex-wrap justify-center gap-2">
+                {relationships.map((relationship) => (
+                  <span
+                    key={relationship.label}
+                    className={`rounded-full border px-3 py-1 text-xs font-medium ${
+                      relationship.type === "conflict"
+                        ? "border-destructive/30 bg-destructive/10 text-destructive/90"
+                        : "border-primary/30 bg-primary/10 text-primary"
+                    }`}
+                  >
+                    {relationship.label}
+                  </span>
+                ))}
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                I selected these stakeholder groups because each one controls or experiences a
+                different part of the accountability cycle: building, regulating, auditing, using,
+                or financially pressuring AI systems.
               </p>
             </div>
           </motion.div>

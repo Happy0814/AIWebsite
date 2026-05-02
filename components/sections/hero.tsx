@@ -66,13 +66,13 @@ export function HeroSection() {
         {/* Content */}
         <motion.div
           style={{ opacity, scale, y }}
-          className="relative z-10 max-w-5xl mx-auto px-6 text-center"
+          className="relative z-10 max-w-5xl mx-auto px-6 pt-16 md:pt-0 text-center"
         >
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-primary/80 text-sm tracking-[0.3em] uppercase mb-8 font-medium"
+            className="text-primary/80 text-xs md:text-sm tracking-[0.24em] md:tracking-[0.3em] uppercase mb-5 md:mb-8 font-medium"
           >
             An Exhibition on Wicked Problems
           </motion.p>
@@ -82,7 +82,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.95] mb-8 text-balance"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.98] md:leading-[0.95] mb-6 md:mb-8 text-balance"
           >
             <span className="text-gradient-cyan">Who Is Responsible</span>
             <br />
@@ -94,7 +94,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12 text-pretty"
+            className="text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-8 md:mb-12 text-pretty"
           >
             AI accountability is difficult because AI systems are probabilistic, 
             can change over time, and distribute responsibility across many actors.
@@ -102,9 +102,9 @@ export function HeroSection() {
 
           <motion.div
             style={{ opacity: thesisOpacity, y: thesisY }}
-            className="max-w-4xl mx-auto glass rounded-2xl p-8 md:p-10"
+            className="max-w-4xl mx-auto glass rounded-xl md:rounded-2xl p-5 md:p-10"
           >
-            <p className="text-lg md:text-xl leading-relaxed text-foreground/90">
+            <p className="text-base md:text-xl leading-relaxed text-foreground/90">
               As AI systems become embedded in education, healthcare, work, media, and public life, 
               questions of responsibility become harder to answer. If an AI system causes harm, 
               who is accountable: the developer, the company, the deployer, the regulator, or no one at all? 

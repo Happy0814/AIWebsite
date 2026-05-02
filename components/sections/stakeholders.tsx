@@ -75,7 +75,8 @@ export function StakeholdersSection() {
             Stakeholders in the System
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Each group has different interests, perceptions, and impacts within the AI accountability ecosystem.
+            These groups were selected because they either shape AI decisions directly or absorb
+            the consequences when accountability fails.
           </p>
         </motion.div>
 

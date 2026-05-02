@@ -6,7 +6,7 @@ import { useRef } from "react"
 const ethicalProblems = [
   {
     title: "Who Gets to Define \"Safe\" or \"Fair\"?",
-    description: "Researchers and institutions may embed values into AI systems without broad democratic agreement.",
+    description: "Researchers and institutions may embed values into AI systems without broad democratic agreement about whose harms count most.",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
         <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="1.5" />
@@ -19,7 +19,7 @@ const ethicalProblems = [
   },
   {
     title: "How Much Uncertainty Is Acceptable?",
-    description: "Deploying systems whose long-term harms cannot be fully tested in advance creates a tension between innovation and public protection.",
+    description: "Post-deployment drift means long-term harms cannot be fully tested in advance, creating a tension between innovation and public protection.",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12">
         <rect x="8" y="16" width="32" height="24" rx="2" stroke="currentColor" strokeWidth="1.5" />
@@ -53,6 +53,10 @@ export function EthicsSection() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6">
             Ethical Problems for Researchers
           </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            The knowledge gap is not only whether AI works. It is whether researchers can prove
+            that oversight remains meaningful after systems leave the lab.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">

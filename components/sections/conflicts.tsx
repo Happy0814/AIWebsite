@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 
 const conflicts = [
   {
@@ -34,106 +34,102 @@ const sharedConcerns = [
 ]
 
 export function ConflictsSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  })
-
-  const leftOpacity = useTransform(scrollYProgress, [0.15, 0.25], [0, 1])
-  const leftX = useTransform(scrollYProgress, [0.15, 0.25], [-50, 0])
-  const rightOpacity = useTransform(scrollYProgress, [0.3, 0.4], [0, 1])
-  const rightX = useTransform(scrollYProgress, [0.3, 0.4], [50, 0])
-  const centerOpacity = useTransform(scrollYProgress, [0.45, 0.55], [0, 1])
-  const centerScale = useTransform(scrollYProgress, [0.45, 0.55], [0.9, 1])
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
   return (
     <section
       id="conflicts"
-      ref={containerRef}
-      className="relative min-h-[250vh]"
+      ref={sectionRef}
+      className="relative py-32 md:py-40 overflow-hidden"
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10 bg-destructive" />
-          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-10 bg-primary" />
-        </div>
+      <div className="absolute inset-0">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10 bg-destructive" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-10 bg-primary" />
+      </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
-          {/* Header */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <p className="text-primary/80 text-sm tracking-[0.2em] uppercase mb-2">Tension & Alignment</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif">Conflict and Convergence</h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           <motion.div
-            style={{ opacity: leftOpacity }}
-            className="text-center mb-12"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="space-y-5"
           >
-            <p className="text-primary/80 text-sm tracking-[0.2em] uppercase mb-2">Tension & Alignment</p>
-            <h2 className="text-4xl md:text-5xl font-serif">Conflict and Convergence</h2>
-          </motion.div>
-
-          {/* Split Layout */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Side - Conflicts */}
-            <motion.div
-              style={{ opacity: leftOpacity, x: leftX }}
-              className="space-y-6"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-3 h-3 rounded-full bg-destructive/80" />
-                <h3 className="text-2xl font-semibold text-foreground">Major Conflicts</h3>
-              </div>
-
-              {conflicts.map((conflict) => (
-                <div
-                  key={conflict.title}
-                  className="glass rounded-xl p-6 border-l-2 border-destructive/50"
-                >
-                  <h4 className="text-lg font-semibold text-foreground mb-2">{conflict.title}</h4>
-                  <p className="text-muted-foreground leading-relaxed">{conflict.description}</p>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Right Side - Shared Concerns */}
-            <motion.div
-              style={{ opacity: rightOpacity, x: rightX }}
-              className="space-y-6"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-3 h-3 rounded-full bg-primary" />
-                <h3 className="text-2xl font-semibold text-foreground">Shared Concerns</h3>
-              </div>
-
-              {sharedConcerns.map((concern) => (
-                <div
-                  key={concern.title}
-                  className="glass rounded-xl p-6 border-l-2 border-primary/50"
-                >
-                  <h4 className="text-lg font-semibold text-foreground mb-2">{concern.title}</h4>
-                  <p className="text-muted-foreground leading-relaxed">{concern.description}</p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Center Takeaway */}
-          <motion.div
-            style={{ opacity: centerOpacity, scale: centerScale }}
-            className="mt-12 max-w-2xl mx-auto"
-          >
-            <div className="glass-strong rounded-2xl p-8 text-center border border-primary/20">
-              <div className="flex justify-center gap-4 mb-4">
-                <div className="w-8 h-1 rounded-full bg-destructive/60" />
-                <div className="w-8 h-1 rounded-full bg-primary/60" />
-              </div>
-              <p className="text-lg text-foreground leading-relaxed">
-                Both <span className="text-destructive/90 font-medium">conflict</span> and{" "}
-                <span className="text-primary font-medium">common ground</span> exist inside 
-                the same system. Recognizing both is essential for understanding why AI 
-                accountability remains so difficult to achieve.
-              </p>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-3 h-3 rounded-full bg-destructive/80" />
+              <h3 className="text-2xl font-semibold text-foreground">Major Conflicts</h3>
             </div>
+
+            {conflicts.map((conflict, index) => (
+              <motion.div
+                key={conflict.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.25 + index * 0.08 }}
+                className="glass rounded-xl p-6 border-l-2 border-destructive/50"
+              >
+                <h4 className="text-lg font-semibold text-foreground mb-2">{conflict.title}</h4>
+                <p className="text-muted-foreground leading-relaxed">{conflict.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="space-y-5"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-3 h-3 rounded-full bg-primary" />
+              <h3 className="text-2xl font-semibold text-foreground">Shared Concerns</h3>
+            </div>
+
+            {sharedConcerns.map((concern, index) => (
+              <motion.div
+                key={concern.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.08 }}
+                className="glass rounded-xl p-6 border-l-2 border-primary/50"
+              >
+                <h4 className="text-lg font-semibold text-foreground mb-2">{concern.title}</h4>
+                <p className="text-muted-foreground leading-relaxed">{concern.description}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.7, delay: 0.45 }}
+          className="mt-12 max-w-2xl mx-auto"
+        >
+          <div className="glass-strong rounded-2xl p-8 text-center border border-primary/20">
+            <div className="flex justify-center gap-4 mb-4">
+              <div className="w-8 h-1 rounded-full bg-destructive/60" />
+              <div className="w-8 h-1 rounded-full bg-primary/60" />
+            </div>
+            <p className="text-lg text-foreground leading-relaxed">
+              Both <span className="text-destructive/90 font-medium">conflict</span> and{" "}
+              <span className="text-primary font-medium">common ground</span> exist inside 
+              the same system. Recognizing both is essential for understanding why AI 
+              accountability remains so difficult to achieve.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

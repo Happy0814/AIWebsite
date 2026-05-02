@@ -17,7 +17,7 @@ const cards = [
   },
   {
     title: "Model Drift",
-    description: "Even if a system appears safe or fair at deployment, it may change over time as conditions and usage evolve.",
+    description: "Dataset shift research shows that a model can behave differently when the real world no longer matches its training conditions.",
     icon: (
       <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
         <path d="M5 25 Q 10 10, 20 20 T 35 15" stroke="currentColor" strokeWidth="1.5" fill="none" />
@@ -28,7 +28,7 @@ const cards = [
   },
   {
     title: "Distributed Responsibility",
-    description: "Responsibility is spread across developers, companies, deployers, regulators, auditors, and users.",
+    description: "Accountability frameworks show that responsibility is spread across developers, companies, deployers, regulators, auditors, and users.",
     icon: (
       <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
         <circle cx="20" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
@@ -42,7 +42,7 @@ const cards = [
   },
   {
     title: "Regulation Lags Behind",
-    description: "AI deployment often moves faster than legal and institutional oversight.",
+    description: "AI deployment often moves faster than law, standards, insurance markets, and institutional oversight can adapt.",
     icon: (
       <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
         <rect x="8" y="8" width="24" height="24" rx="2" stroke="currentColor" strokeWidth="1.5" />
@@ -77,7 +77,8 @@ export function WhyMattersSection() {
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             AI accountability matters because AI is no longer a distant future technology. 
-            It already affects real decisions, real institutions, and real lives.
+            It already affects real decisions, real institutions, and real lives, while public
+            trust remains fragile.
           </p>
         </motion.div>
 
